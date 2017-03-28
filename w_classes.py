@@ -24,9 +24,9 @@ class Alerts:
 
     def __repr__(self):
         if self.alerts:
-            return "Alerts: {}".format(self.alerts)
+            return "Current weather alerts: {}".format(self.alerts)
         else:
-            return "No alerts to show."
+            return "Current weather alerts: No alerts to show."
 
 
 class Hurricanes:
@@ -55,7 +55,7 @@ class TenDayForecast:
 
     def __repr__(self):
         day_list = self.ten_day_forecast()
-        day_string = 'Ten Day Forecast:\n\n'
+        day_string = ''
         for day_info in day_list:
             day_string += "{}:\n{}\n\n".format(day_info[0], day_info[1])
         return day_string

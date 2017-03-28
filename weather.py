@@ -1,9 +1,21 @@
 import requests
-from w_classes import CurrentConditions, Suntimes, Alerts, Hurricanes, TenDayForecast
+import os
+import time
+from w_classes import CurrentConditions
+from w_classes import Suntimes
+from w_classes import Alerts
+from w_classes import Hurricanes
+from w_classes import TenDayForecast
+
+
+def clear():
+    os.system('clear')
 
 
 def main():
-    zipcode = int(input("What zipcode: "))
+    clear()
+    print("\t\tWelcome to Weather Underground\n")
+    zipcode = int(input("Enter a zipcode (XXXXX) for weather information: "))
     r = requests.get("http://api.wunderground.com/api/"
                      "844b5d5e3bb67013/conditions/forecast10day/astronomy/"
                      "alerts/currenthurricane/q/{}.json".format(zipcode))
@@ -19,15 +31,21 @@ def interface(w_report):
     t = TenDayForecast(w_report)
     print("\n")
     print(c)
+    time.sleep(0.8)
     print("\n")
     print(s)
+    time.sleep(1)
     print("\n")
     print(a)
+    time.sleep(1)
     print("\n")
     print(h)
     print("\n")
+    print("--- 10 day forecast ---\n\n")
+    time.sleep(1.5)
     print(t)
     print("\n")
+    input("Scroll up or press ENTER to return to command line.")
 
 
 if __name__ == "__main__":

@@ -1,11 +1,35 @@
-import requests
-import requests_mock
+import json
+from w_classes import CurrentConditions
+from w_classes import Suntimes
+from w_classes import Alerts
+from w_classes import Hurricanes
+from w_classes import TenDayForecast
 
 
-with requests_mock.Mocker() as m:
-    m.get('http://api.wunderground.com/api/844b5d5e3bb67013/condition/forecast10day/astronomy/alerts/currenthurricane/q/27703.json', text='resp')
-    requests.get('http://api.wunderground.com/api/844b5d5e3bb67013/condition/forecast10day/astronomy/alerts/currenthurricane/q/27703.json').json()
+with open('report.json') as f:
+    report = json.load(f)
 
 
-def test_current_conditions():
-    assert m.text == 'resp'
+def test_CCinit():
+    conditions = CurrentConditions(report)
+    return conditions
+
+
+def test_Sinit():
+    suntimes = Suntimes(report)
+    return suntimes
+
+
+def test_Ainit():
+    alerts = Alerts(report)
+    return alerts
+
+
+def test_Hinit():
+    hurricanes = Hurricanes(report)
+    return hurricanes
+
+
+def test_10init():
+    ten_day_forecast = TenDayForecast(report)
+    return ten_day_forecast
